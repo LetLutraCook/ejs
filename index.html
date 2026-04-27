@@ -1,39 +1,55 @@
 <!DOCTYPE html>
-  <head>
-    <title>ejs</title>
-    <style>
-      body, html {
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div style="width:100%;height:100%;max-width:100%">
+<html>
+<head>
+  <title>ejs</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #000;
+      color: white;
+    }
+    #game-container {
+      width: 100%;
+      height: 80vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
     <div id="game"></div>
-    </div>
-    
-    <label for="file-upload">Choose a file (.smc):</label>
-    <input type="file" id="rom-selector" name="file-upload" accept=".smc">
-    
-    <script>
-      const fileInput = document.getElementById('rom-selector');
-      
-      fileInput.addEventListener('change', (event) => {
-        const file = fileInput.files[0];
-        const romUrl = URL.createObjectURL(file);
+  </div>
+  
+  <div style="padding: 20px;">
+    <label for="rom-selector">Choose a file (.smc):</label>
+    <input type="file" id="rom-selector" accept=".smc">
+  </div>
 
-        window.EJS_player = "#game";
-        window.EJS_core = "snes"; 
-        window.EJS_gameName = file.name;
-        window.EJS_color = "#0064ff";
-        window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
-        window.EJS_gameUrl = romUrl;
-        
-        const loader = document.createElement('script');
-        loader.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
-        document.body.appendChild(loader);
-      });
-    </script>
-  </body>
+  <script>
+    const fileInput = document.getElementById('rom-selector');
+
+    fileInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const romUrl = URL.createObjectURL(file);
+
+      window.EJS_player = "#game";
+      window.EJS_core = "snes"; 
+      window.EJS_gameName = file.name;
+      window.EJS_color = "#0064ff";
+      window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+      window.EJS_gameUrl = romUrl;
+
+      const oldScript = document.getElementById('ejs-loader');
+      if (oldScript) oldScript.remove();
+
+      const loader = document.createElement('script');
+      loader(id = 'ejs-loader');
+      loader.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
+      document.body.appendChild(loader);
+    });
+  </script>
+</body>
 </html>
