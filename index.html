@@ -3,8 +3,12 @@
 <head>
   <title>ejs</title>
   <style>
-    body {
-      height: 100%;
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-color: #000;
+      color: white;
       overflow: hidden;
     }
     #game-container {
@@ -31,8 +35,6 @@
       const file = event.target.files[0];
       if (!file) return;
 
-      ui.style.display = 'none';
-      
       const romUrl = URL.createObjectURL(file);
 
       window.EJS_player = "#game";
@@ -49,6 +51,8 @@
       loader.id = 'ejs-loader';
       loader.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
       document.body.appendChild(loader);
+
+      ui.style.display = 'none';
     });
   </script>
 </body>
