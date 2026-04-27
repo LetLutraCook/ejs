@@ -10,10 +10,6 @@
     #game-container {
       width: 100%;
       height: 100%;
-      z-index: 0;
-    }
-    #ui {
-      z-index: 1;
     }
   </style>
 </head>
@@ -46,15 +42,13 @@
       window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
       window.EJS_gameUrl = romUrl;
 
-      requestAnimationFrame(() => {
-        const oldScript = document.getElementById('ejs-loader');
-        if (oldScript) oldScript.remove();
+      const oldScript = document.getElementById('ejs-loader');
+      if (oldScript) oldScript.remove();
 
-        const loader = document.createElement('script');
-        loader.id = 'ejs-loader';
-        loader.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
-        document.body.appendChild(loader);
-      });
+      const loader = document.createElement('script');
+      loader.id = 'ejs-loader';
+      loader.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
+      document.body.appendChild(loader);
     });
   </script>
 </body>
