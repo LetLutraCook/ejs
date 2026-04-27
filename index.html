@@ -14,7 +14,10 @@
     #game {
       width: 100%;
       height: 100%;
-      display: none;
+      z-index: 0;
+    }
+    #ui {
+      z-index: 1;
     }
   </style>
 </head>
@@ -29,14 +32,12 @@
   <script>
     const fileInput = document.getElementById('rom-selector');
     const ui = document.getElementById('ui');
-    const game = document.getElementById('game');
 
     fileInput.addEventListener('change', (event) => {
       const file = event.target.files[0];
       if (!file) return;
 
       ui.style.display = 'none';
-      game.style.display = 'block';
       
       const romUrl = URL.createObjectURL(file);
 
