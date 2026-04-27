@@ -35,6 +35,9 @@
       const file = event.target.files[0];
       if (!file) return;
 
+      ui.style.display = 'none';
+      game.style.display = 'block';
+      
       const romUrl = URL.createObjectURL(file);
 
       window.EJS_player = "#game";
@@ -51,9 +54,6 @@
       loader.id = 'ejs-loader';
       loader.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
       document.body.appendChild(loader);
-
-      ui.style.display = 'none';
-      game.style.display = 'block';
     });
   </script>
 </body>
