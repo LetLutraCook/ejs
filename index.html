@@ -46,7 +46,7 @@
       if (oldScript) oldScript.remove();
 
       const loader = document.createElement('script');
-      loader(id = 'ejs-loader');
+      loader.id = 'ejs-loader';
       loader.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
       document.body.appendChild(loader);
     });
