@@ -6,14 +6,13 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100vh;
+      height: 100%;
       background-color: #000;
       color: white;
-      overflow: hidden;
     }
     #game-container {
       width: 100%;
-      height: 100%;
+      height: 80vh;
     }
   </style>
 </head>
@@ -22,14 +21,13 @@
     <div id="game"></div>
   </div>
   
-  <div id="ui" style="padding: 20px;">
+  <div style="padding: 20px;">
     <label for="rom-selector">Choose a file (.smc):</label>
     <input type="file" id="rom-selector" accept=".smc">
   </div>
 
   <script>
     const fileInput = document.getElementById('rom-selector');
-    const ui = document.getElementById('ui');
 
     fileInput.addEventListener('change', (event) => {
       const file = event.target.files[0];
@@ -51,8 +49,6 @@
       loader.id = 'ejs-loader';
       loader.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
       document.body.appendChild(loader);
-
-      ui.style.display = 'none';
     });
   </script>
 </body>
